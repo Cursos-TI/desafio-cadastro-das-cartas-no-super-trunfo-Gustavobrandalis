@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-#include <stdio.h>
-
 int main(){
 //Nesta parte do codigo declaro as variaveis
     char estado1[15]; 
