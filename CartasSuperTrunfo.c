@@ -12,10 +12,15 @@ int main(){
     int populacao2; 
     int turismo1; 
     int turismo2; 
-    float area1; 
+    float area1, densidade1, densidade2, capita1, capita2; 
     float area2; 
     float pib1; 
     float pib2;
+    int pontuacao1, pontuacao2, opcao;
+    
+
+    pontuacao1 = 0;
+    pontuacao2 = 0;
 
 // neste ponto, é feito uam interação com o usuario.
     printf("Ola, Seja bem vindo ao Super Trunfo, vamos iniciar fazendo o cadastro de suas primeiras cartas.\n");
@@ -77,6 +82,10 @@ int main(){
     printf("PIB: %f bilhoes \n" , pib1);
     printf("Area: %f km2\n" , area1);
     printf("Pontos turisticos:%d \n" , turismo1);
+    densidade1 = populacao1 / area1; //nesta linha é feito o calculo de densidade demografica
+    printf("Densidade demografica: %.2f\n", densidade1);
+    capita1 = pib1 / populacao1;
+    printf("PIB per capita: %f\n", capita1);
     printf("\n");
     printf("Carta 2\n");
     printf("Estado:  %s \n" , estado2);
@@ -86,6 +95,128 @@ int main(){
     printf("PIB:%f bilhoes \n" , pib2);
     printf("Area: %f km2 \n" , area2);
     printf("Pontos turisticos:%d \n" , turismo2);
+    densidade2 = populacao2 / area2;
+    printf("Densidade demografica:%.2f\n", densidade2);
+    capita2 = pib2 / populacao2;  //nesta linha é calculado o PIB percapita dos estados
+    printf("PIB per capita: %f\n", capita2);
+    printf("\n");
+
+    // nestas parte é dado a opcao para o usuario de comparacao das cartas 
+    printf("Agora que temos os atributos de suas cartas, vamos ver qual e a melhor!\n");
+    printf("Escolha dentro destas opcoes qual valor quer comparar:\n");
+    printf("1 - Populacao\n");
+    printf("2 - PIB\n");
+    printf("3 - Area\n");
+    printf("4 - Pontos turisticos\n");
+    printf("5 - Densidade demografica\n");
+    printf("6 - PIB per capita");
+    scanf("%d" , &opcao);
+    //aqui é usado a funcao switch para pegar a opcao escolhida e calcular as variaveis 
+    switch (opcao){
+        case 1:
+        if(populacao1 > populacao2){
+            printf("A populacao do %s e maior\n" , estado1);
+            pontuacao1 += 10;
+        } 
+        
+        else if(populacao1 < populacao2){
+            printf("A populacao do %s e maior\n", estado2);
+            pontuacao2 += 10; 
+        }
+        else{
+                printf("As populacoes sao igual\n");
+        }
+        break;
+        
+        case 2:
+        if(pib1 > pib2){
+            printf("O PIB do %s e maior\n" , estado1);
+            pontuacao1 += 10;
+        }
+        else if(pib1 < pib2){
+            printf("O PIB do %s e maior\n", estado2);
+            pontuacao2 += 10; 
+        }
+        else{
+            printf("Os PIBS sao igual\n"); 
+        }
+            break;
+        
+        case 3:
+        if(area1 > area2){
+            printf("A area do %s e maior\n" , estado1);
+            pontuacao1 += 10;
+        }    
+        else if(area1 < area2){
+            printf("A area do %s e maior\n", estado2);
+            pontuacao2 += 10;
+        }
+        else{
+            printf("As areas sao iguais");
+        }
+        break;
+        
+        case 4:
+        if(turismo1 > turismo2){
+            printf("%s tem mais pontos turisticos\n" , estado1);
+            pontuacao1 += 10;
+        }
+        else if(turismo1 < turismo2){
+            printf("%s tem mais pontos turisticos\n", estado2);
+            pontuacao2 += 10;
+        }
+        else{
+            printf("Os dois estados tem a mesma quantidade de pontos turisticos"); 
+        }
+        break;
+        
+        case 5:
+        if(densidade1 < densidade2){
+            printf("A densidade de %s e menor!\n", estado1);
+        pontuacao1 += 10;
+        }
+        else if(densidade1 > densidade2){
+            printf("A densidade de %s e menor!\n", estado2);
+        pontuacao2 += 10;
+        }
+        else{
+            printf("As densidades sao iguais\n");
+        }  
+        break;
+        
+        case 6:
+        if(capita1 > capita2){
+            printf("O PIB per capita de %s e maior\n", estado1);
+            pontuacao1 += 10;
+        }
+        else if(capita1 < capita2){
+            printf("O PIB per capita de %s e maior\n",estado2);
+            pontuacao2 += 10;
+        }    
+        else{
+            printf("Os PIB per capita sao iguais\n");    
+        }
+        break;
+        
+        default: 
+        printf("A opcao e invalida");
+    }
+   
+    //Nestas linhas o codigo imprime a pontuação e quem foi o vencedor.
+        printf("Pontuacao Final\n");
+        printf("%s: %d\n", estado1 , pontuacao1);
+        printf("%s: %d\n", estado2 , pontuacao2);
+    
+    if(pontuacao1 < pontuacao2){
+        printf("A carta %s e melhor que a %s\n" ,estado1 , estado2);
+}
+    else if(pontuacao1 > pontuacao2){
+        printf("A carta %s e melhor que a %s\n",estado2, estado1);
+}
+    else{
+        printf("As duas cartas tem a mesma pontuacao!");
+}
 
     return 0;
-}
+} 
+
